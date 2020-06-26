@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Navbar from "./components/layout/Navbar";
+import Users from "./components/users/Users";
 
 export default class App extends Component {
   render() {
     return (
-      <div className="App container">
+      <div className="App">
         <Navbar />
-        <header className="App-header">Selamat Datang</header>
+        <Users />
       </div>
     );
   }
