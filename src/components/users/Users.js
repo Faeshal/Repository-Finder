@@ -25,12 +25,12 @@ class Users extends Component {
   };
   render() {
     return (
-      <div>
+      <div className="container">
+      <div className="row ">
         {this.state.users.map((user) => (
-          <div className="card-deck">
-            <UsertItem key={user.id} user={user} />
-          </div>
+          <UsertItem key={user.id} user={user} />
         ))}
+      </div>
       </div>
     );
   }
