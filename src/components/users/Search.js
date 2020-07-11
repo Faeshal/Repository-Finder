@@ -6,12 +6,24 @@ class Search extends Component {
     text: "",
   };
 
-  static propTypes = { searchUsers: PropTypes.func.isRequired };
+  static propTypes = {
+    searchUsers: PropTypes.func.isRequired,
+    clearUsers: PropTypes.func.isRequired,
+    showClear: PropTypes.bool.isRequired,
+    setAlert: PropTypes.func.isRequired,
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
-    this.props.searchUsers(this.state.text);
-    this.setState({ text: "" });
+    if (this.state.text === "") {
+      this.props.setAlert(
+        "Input Box Empty, Please Enter Something .....",
+        "warning"
+      );
+    } else {
+      this.props.searchUsers(this.state.text);
+      this.setState({ text: "" });
+    }
   };
 
   onChange = (e) => {
@@ -19,10 +31,11 @@ class Search extends Component {
   };
 
   render() {
+    const { showClear, clearUsers } = this.props;
     return (
       <div className="container">
         <form onSubmit={this.onSubmit}>
-          <div className="input-group mb-3 mt-4">
+          <div className="input-group mb-4 mt-2">
             <input
               type="text"
               name="text"
@@ -32,12 +45,17 @@ class Search extends Component {
               onChange={this.onChange}
             />
             <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="submit">
+              <button className="btn btn-dark" type="submit">
                 Search
               </button>
             </div>
           </div>
         </form>
+        {showClear && (
+          <button className="btn btn-sm btn-dark" onClick={clearUsers}>
+            Clear
+          </button>
+        )}
       </div>
     );
   }
