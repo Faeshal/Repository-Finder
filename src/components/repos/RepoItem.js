@@ -8,8 +8,8 @@ export const RepoItem = ({ repo }) => {
       style={{ width: "100%" }}
     >
       <div className="col-md-10 mx-auto">
-        <div class="card">
-          <div class="card-body">
+        <div className="card">
+          <div className="card-body">
             <a href={repo.html_url}>{repo.name}</a>
           </div>
         </div>
