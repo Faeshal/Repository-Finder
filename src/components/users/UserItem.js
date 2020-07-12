@@ -7,8 +7,8 @@ const UserItem = ({ user: { login, avatar_url, html_url } }) => {
   // nanti parameter yang diatas hanya props saja
   // const { login, avatar_url, html_url } = props.user;
   return (
-    <div className="col-md-4">
-      <div className="card mx-auto text-center" style={{ width: "15rem" }}>
+    <div className="col-md-3">
+      <div className="card mx-auto text-center mb-3" style={{ width: "17rem" }}>
         <img className="card-img-top" src={avatar_url} alt="Card image cap" />
         <div className="card-body">
           <h5 className="card-title">{login}</h5>
