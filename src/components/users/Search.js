@@ -52,7 +52,7 @@ class Search extends Component {
           </div>
         </form>
         {showClear && (
-          <button className="btn btn-sm btn-dark" onClick={clearUsers}>
+          <button className="btn btn-sm btn-dark mb-3" onClick={clearUsers}>
             Clear
           </button>
         )}

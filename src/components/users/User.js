@@ -1,17 +1,21 @@
 import React, { Component, Fragment } from "react";
 import Spinner from "../layout/Spinner";
 import PropTypes from "prop-types";
+import Repos from "../repos/Repos";
 import { Link } from "react-router-dom";
 
 export class User extends Component {
   componentDidMount() {
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
 
   static propTypes = {
     loading: PropTypes.bool.isRequired,
     user: PropTypes.object.isRequired,
+    repos: PropTypes.array.isRequired,
     getUser: PropTypes.func.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
   };
 
   render() {
@@ -31,19 +35,22 @@ export class User extends Component {
       hireable,
     } = this.props.user;
 
-    const { loading } = this.props;
+    const { loading, repos } = this.props;
 
     if (loading) return <Spinner />;
 
     return (
       <Fragment>
-        <div className="row justify-content-center">
-          <div className="col-md-10 mx-auto">
+        <div
+          className="row justify-content-center text-center mx-auto"
+          style={{ width: "100%" }}
+        >
+          <div className="col-md-10">
             <Link to="/" className="btn btn-dark btn-sm">
               Back
             </Link>
             <div className="card text-center mt-3">
-              <h6 class="card-header text-muted">
+              <h6 className="card-header text-muted">
                 Hireable
                 {hireable ? (
                   <i className="ml-1 fas fa-check text-success" />
@@ -74,20 +81,23 @@ export class User extends Component {
                 </a>
               </div>
               <div className="card-footer text-center">
-                <span class="badge badge-secondary ">
+                <span className="badge badge-secondary ">
                   Followers {followers}
                 </span>
-                <span class="badge badge-secondary mr-4 ml-4">
+                <span className="badge badge-secondary mr-4 ml-4">
                   Following {following}
                 </span>
-                <span class="badge badge-secondary mr-4 ml-4">
+                <span className="badge badge-secondary mr-4 ml-4">
                   Repository {public_repos}
                 </span>
-                <span class="badge badge-secondary">Gist {public_gists}</span>
+                <span className="badge badge-secondary">
+                  Gist {public_gists}
+                </span>
               </div>
             </div>
           </div>
         </div>
+        <Repos repos={repos} />
       </Fragment>
     );
   }
