@@ -27,12 +27,13 @@ const Search = () => {
 
   return (
     <div className="container">
+      <div className=" col-md-6 offset-md-3">
       <form onSubmit={onSubmit}>
         <div className="input-group mb-4 mt-2">
           <input
             type="text"
             name="text"
-            className="form-control"
+            className="form-control form-control-lg"
             placeholder="Type name here..."
             value={text}
             onChange={onChange}
@@ -44,6 +45,7 @@ const Search = () => {
           </div>
         </div>
       </form>
+      </div>
       {githubContext.users.length == 0 && (
        <div className="row ">
          <div style={col}>
@@ -51,6 +53,7 @@ const Search = () => {
          </div>
        </div>
       )}
+      <div className=" col-md-6 offset-md-3">
       {githubContext.users.length > 0 && (
         <button
           className="btn btn-sm btn-dark mb-3"
@@ -59,6 +62,7 @@ const Search = () => {
           Clear
         </button>
       )}
+      </div>
     </div>
   );
 };
