@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import GithubContext from "../../context/github/githubContext";
 import AlertContext from "../../context/alert/alertContext";
+import Welcome from "../layout/welcome.svg";
 
 const Search = () => {
   const githubContext = useContext(GithubContext);
@@ -43,6 +44,13 @@ const Search = () => {
           </div>
         </div>
       </form>
+      {githubContext.users.length == 0 && (
+       <div className="row ">
+         <div style={col}>
+           <img src={Welcome} style={{width:"380px"}} />
+         </div>
+       </div>
+      )}
       {githubContext.users.length > 0 && (
         <button
           className="btn btn-sm btn-dark mb-3"
@@ -54,5 +62,14 @@ const Search = () => {
     </div>
   );
 };
+
+const col  = {
+  margin: "0",
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)"
+};
+
 
 export default Search;
